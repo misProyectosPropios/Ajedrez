@@ -97,7 +97,7 @@ public class Tablero {
 	/**
 	 * Muestra el valor de las piezas que hay en el tablero
 	 */
-	public void calcularValorTablero() {
+	public void showValorTablero() {
 		int puntosBlancas = 0;
 		int puntosNegras = 0;
 		
