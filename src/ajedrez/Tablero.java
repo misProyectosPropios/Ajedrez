@@ -5,17 +5,17 @@ public class Tablero {
 	
 	private PiezaConColor tablero[][] = new PiezaConColor[TAMANO][TAMANO];
 	
-	public Tablero(int numeroCasillas) {
+	public Tablero() {
 		//Lo inicializamos;
-		for(int i = 0; i < numeroCasillas; i++) {
-			for(int j = 0; j < numeroCasillas; j++) {
+		for(int i = 0; i < TAMANO; i++) {
+			for(int j = 0; j < TAMANO; j++) {
 				this.tablero[i][j] = null;
 			}
 		}
 		
 		//Lo llenamos con las piezas correspondientes
 		//Peones
-		for (int i = 0; i < numeroCasillas; i++) {
+		for (int i = 0; i < TAMANO; i++) {
 			this.tablero[1][i] = new PiezaConColor(Pieza.PEON, false);
 			this.tablero[6][i] = new PiezaConColor(Pieza.PEON, true);
 		}
@@ -64,15 +64,34 @@ public class Tablero {
 	
 	public void mostrarTablero() {
 		for (int i = 0; i < this.tablero.length; i++) {
-			for (int j = 0; j < this.tablero[i].length - 1; j++) {
-				System.out.print(this.tablero[i][j].getPieceEmoji() +  " | ");
+			for (int j = 0; j < this.tablero[i].length; j++) {
+				if (this.tablero[i][j] != null) {
+	                System.out.print(String.format("%-4s", this.tablero[i][j]) + "|");
+	            } else {
+	                System.out.print(String.format("%-4s", " ") + "|");
+	            }
 			}
-			System.out.print(this.tablero[i][this.tablero[i].length - 1].getPieceEmoji() + "\n");
+			System.out.println();
 		}
 	}
 	
 	public void colocarPieza(int fila, int columna, PiezaConColor pieza) {
 		this.tablero[fila][columna] = pieza;
+	}
+	
+	public int calcularPuntos(Boolean isWhite) {
+		int puntos = 0;		
+		for (int i = 0; i < this.tablero.length; i++) {
+			for (int j = 0; j < this.tablero[i].length; j++) {
+				if (this.tablero[i][j] == null) {
+					continue;
+				} 
+				if (this.tablero[i][j].isWhite == isWhite) {
+					puntos += this.tablero[i][j].getPieza().getValor();
+				}
+			}
+		}
+		return puntos;
 	}
 	
 	/**
@@ -96,6 +115,7 @@ public class Tablero {
 		}
 		System.out.println("Puntos blancas: " + puntosBlancas);
 		System.out.println("Puntos negras: " + puntosNegras);
+		System.out.println("Diferencia: " + (puntosBlancas - puntosNegras));
 	}
 
 
