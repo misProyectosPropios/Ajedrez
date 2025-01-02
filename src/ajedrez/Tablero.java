@@ -1,5 +1,7 @@
 package ajedrez;
 
+import java.util.ArrayList;
+
 public class Tablero {
 	final static int TAMANO = 8;
 	
@@ -75,6 +77,56 @@ public class Tablero {
 		}
 	}
 	
+	/**
+	 * Devuelve las posibles posiciones en donde se pueden mover la pieza dada. 
+	 * En caso de o no ser ninguna pieza, o no poder moverse, se devolverá un array con dimension 0
+	 * @param fila numero entre 1 and 8
+	 * @param columna numero entre 1 and 8
+	 * @return
+	 */
+	public String[] posicionesAMover(int fila, int columna) {
+		if (this.tablero[fila][columna] == null) {
+			return new String[0];
+		}
+		ArrayList<String> posicionesPosibles = new ArrayList<>();
+		
+		//Para hacer entre los negros y los blancos, puedo dar la vuelta el tablero momentaneamente 
+		// y ahorraría codigo repetido
+		switch(this.tablero[fila][columna].pieza) {
+			case Pieza.PEON:
+				//TODO
+				if (fila == 2) {
+					
+				} else {
+					
+				}
+				
+				break;
+			case Pieza.ALFIL:
+				//TODO
+				break;
+			case Pieza.CABALLO:
+				//TODO
+				break;
+			case Pieza.TORRE:
+				//TODO
+				break;
+			case Pieza.REINA:
+				//TODO
+				break;
+			case Pieza.REY:
+				//TODO
+				break;
+		}
+		return (String[]) posicionesPosibles.toArray();
+	}
+	
+	/**
+	 * 
+	 * @param fila: numero entre 1 y 8 que indica la fila
+	 * @param columna: numero entre 1 y 8 que indica la columna
+	 * @param pieza: la pieza a usar en esa ubicación justa
+	 */
 	public void colocarPieza(int fila, int columna, PiezaConColor pieza) {
 		this.tablero[fila][columna] = pieza;
 	}
@@ -117,6 +169,8 @@ public class Tablero {
 		System.out.println("Puntos negras: " + puntosNegras);
 		System.out.println("Diferencia: " + (puntosBlancas - puntosNegras));
 	}
+	
+	
 
 
 
